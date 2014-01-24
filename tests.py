@@ -128,7 +128,7 @@ class SaveAndCheck(TestCase):
 class SaveAndSelect(TestCase):
     def save_and_select(self, d):
         scraperwiki.sql.save([], {u"foo\xdd": d})
-        observed = scraperwiki.sql.select(u'* FROM swdata')[0][u'foo\xdd']
+        observed = scraperwiki.sql.select(u'* FROM data')[0][u'foo\xdd']
         self.assertEqual(d, observed)
 
 
@@ -245,7 +245,7 @@ class TestSave(SaveAndCheck):
     def test_save_table_name(self):
         """
         Test that after we use table_name= in one .save() a
-        subsequent .save without table_name= uses the `swdata`
+        subsequent .save without table_name= uses the `data`
         table again.
         """
         scraperwiki.sql.save(['id'], dict(id=1, stuff=1),
@@ -303,7 +303,7 @@ class TestQuestionMark(TestCase):
 
 
 class TestDateTime(TestCase):
-    def rawdate(self, table="swdata", column="datetime"):
+    def rawdate(self, table="data", column="datetime"):
         connection = sqlite3.connect(DB_NAME)
         cursor = connection.cursor()
         cursor.execute(u"SELECT {} FROM {}".format(column, table))
@@ -318,11 +318,11 @@ class TestDateTime(TestCase):
 
             self.assertEqual(
                 [{u'birthday\xaa': str(d)}],
-                scraperwiki.sql.select("* FROM swdata"))
+                scraperwiki.sql.select("* FROM data"))
 
             self.assertEqual(
                 {u'keys': [u'birthday\xaa'], u'data': [(six.text_type(d),)]},
-                scraperwiki.sql.execute("SELECT * FROM swdata"))
+                scraperwiki.sql.execute("SELECT * FROM data"))
 
         self.assertEqual(str(d), self.rawdate(column=u"birthday\xaa"))
 

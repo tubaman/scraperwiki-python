@@ -80,7 +80,7 @@ class _State(object):
             cls.new_transaction()
         if cls.table is None:
             cls.reflect_metadata()
-            cls.table = sqlalchemy.Table('swdata', _State.metadata,
+            cls.table = sqlalchemy.Table('data', _State.metadata,
                                          extend_existing=True)
         if cls._transaction is None:
             cls.new_transaction()
@@ -178,10 +178,10 @@ def select(query, data=None):
     return rows
 
 
-def save(unique_keys, data, table_name='swdata'):
+def save(unique_keys, data, table_name='data'):
     """
     Save the given data to the table specified by `table_name`
-    (which defaults to 'swdata'). The data must be a mapping
+    (which defaults to 'data'). The data must be a mapping
     or an iterable of mappings. Unique keys is a list of keys that exist
     for all rows and for which a unique index will be created.
     """

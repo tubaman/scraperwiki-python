@@ -36,7 +36,7 @@ Currently only supports SQLite. It will make a local SQLite database.
 It is based on `SQLAlchemy <https://pypi.python.org/pypi/SQLAlchemy>`_.
 You should expect it to support other SQL databases at a later date.
 
-scraperwiki.sql.save(unique_keys, data[, table_name="swdata"])
+scraperwiki.sql.save(unique_keys, data[, table_name="data"])
   Saves a data record into the datastore into the table given by ``table_name``.
 
   ``data`` is a dict object with field names as keys; ``unique_keys`` is a subset of data.keys() which determines when a record is overwritten. For large numbers of records `data` can be a list of dicts.
@@ -53,14 +53,14 @@ scraperwiki.sql.execute(sql[, vars])
 
   ``vars`` is an optional list of parameters, inserted when the SQL command contains ‘?’s. For example::
 
-    scraperwiki.sql.execute("INSERT INTO swdata VALUES (?,?,?)", [a,b,c])
+    scraperwiki.sql.execute("INSERT INTO data VALUES (?,?,?)", [a,b,c])
 
   The ‘?’ convention is like "paramstyle qmark" from `Python's DB API 2.0 <http://www.python.org/dev/peps/pep-0249/>`_ (but note that the API to the datastore is nothing like Python's DB API).  In particular the ‘?’ does not itself need quoting, and can in general only be used where a literal would appear. (Note that you cannot substitute in, for example, table or column names.)
 
 scraperwiki.sql.select(sqlfrag[, vars])
   Executes a select command on the datastore.  For example::
 
-    scraperwiki.sql.select("* FROM swdata LIMIT 10")
+    scraperwiki.sql.select("* FROM data LIMIT 10")
 
   Returns a list of dicts that have been selected.
 
@@ -94,7 +94,7 @@ Environment Variables
 ---------------------
 
 SCRAPERWIKI_DATABASE_NAME
-  default: ``scraperwiki.sqlite`` - name of database
+  default: ``data.sqlite`` - name of database
 
 SCRAPERWIKI_DATABASE_TIMEOUT
   default: ``300`` - number of seconds database will wait for a lock
