@@ -7,7 +7,7 @@ from six.moves import range
 rows = [{'id': i, 'test': i * 2, 's': "abc"} for i in range(1000)]
 
 try:
-    os.remove('scraperwiki.sqlite')
+    os.remove('data.sqlite')
 except OSError:
     pass
 

@@ -8,7 +8,6 @@ import re
 import shutil
 import sqlite3
 import warnings
-
 from subprocess import Popen, PIPE
 from textwrap import dedent
 
@@ -19,12 +18,12 @@ import six
 
 import sys
 # scraperwiki.sql._State.echo = True
-DB_NAME = 'scraperwiki.sqlite'
+DB_NAME = 'data.sqlite'
 
 class Setup(TestCase):
     def test_setup(self):
         try:
-            os.remove('scraperwiki.sqlite')
+            os.remove('data.sqlite')
         except OSError:
             pass
 

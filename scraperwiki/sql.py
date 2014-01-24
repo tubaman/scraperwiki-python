@@ -13,7 +13,7 @@ import sqlalchemy
 import six
 
 DATABASE_NAME = os.environ.get("SCRAPERWIKI_DATABASE_NAME",
-                               "sqlite:///scraperwiki.sqlite")
+                               "sqlite:///data.sqlite")
 
 DATABASE_TIMEOUT = float(os.environ.get("SCRAPERWIKI_DATABASE_TIMEOUT", 300))
 SECONDS_BETWEEN_COMMIT = 2
